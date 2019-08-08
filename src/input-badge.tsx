@@ -11,20 +11,15 @@ interface Props {
 }
 
 export default function InputBadge({ badge }: Props) {
-  let {
-    badgeStyle,
-    onBadgePress,
-    badgeTextExtractor,
-    badgeKeyExtractor,
-  } = useContext(BadgeInputContext)
+  let { badgeStyle, onBadgePress, textExtractor, keyExtractor } = useContext(
+    BadgeInputContext
+  )
 
-  let onPress = useCallback(() => onBadgePress(badgeKeyExtractor(badge)), [
-    badge,
-  ])
+  let onPress = useCallback(() => onBadgePress(keyExtractor(badge)), [badge])
 
   return (
     <TouchableOpacity style={[styles.container, badgeStyle]} onPress={onPress}>
-      <Text style={styles.text}>{badgeTextExtractor(badge)}</Text>
+      <Text style={styles.text}>{textExtractor(badge)}</Text>
       <Text style={styles.x}>x</Text>
     </TouchableOpacity>
   )

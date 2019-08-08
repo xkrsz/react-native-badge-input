@@ -1,8 +1,11 @@
 {
   "name": "react-native-badge-input",
   "version": "0.1.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Modular badge input for React Native",
+  "main": "lib/commonjs/index.js",
+  "module": "lib/module/index.js",
+  "react-native": "lib/module/index.js",
+  "types": "lib/typescript/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --ext .js,.ts,.tsx .",
@@ -13,7 +16,7 @@
     "type": "git",
     "url": "git+https://github.com/krszwsk/react-native-badge-input.git"
   },
-  "author": "",
+  "author": "Krzysztof Kraszewski",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/krszwsk/react-native-badge-input/issues"
@@ -26,6 +29,11 @@
     "input",
     "tag",
     "pill"
+  ],
+  "files": [
+    "lib/",
+    "src/",
+    "README.md"
   ],
   "peerDependencies": {
     "react": "*",
@@ -68,5 +76,10 @@
       "module",
       "typescript"
     ]
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.5.5",
+    "react": "^16.8.6",
+    "react-native": "^0.60.4"
   }
 }

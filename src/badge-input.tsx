@@ -21,27 +21,26 @@ interface Props extends TextInputProps {
   onChangeText: (_: string) => void
   onBadgePress: () => void
   inputSuffix?: () => ReactElement
-  keyExtractor: (_: Badge) => string
   badgeStyle?: TouchableOpacityProps['style']
   inputProps?: TextInputProps
-  badgeTextExtractor?: (_: any) => string
-  badgeKeyExtractor?: (_: Badge) => string
+  keyExtractor?: (_: any) => string
+  textExtractor?: (_: any) => string
 }
 
 let defaultBadgeExtractor = (badge: any) => badge
 
 interface IBadgeInputContext {
   onBadgePress: (_: any) => void
-  badgeTextExtractor: (_: any) => string
-  badgeKeyExtractor: (_: any) => string
+  textExtractor: (_: any) => string
+  keyExtractor: (_: any) => string
   badgeStyle?: TouchableOpacityProps['style']
 }
 
 export let BadgeInputContext = createContext<IBadgeInputContext>({
   onBadgePress: (_: any) => {},
   badgeStyle: undefined,
-  badgeTextExtractor: defaultBadgeExtractor,
-  badgeKeyExtractor: defaultBadgeExtractor,
+  textExtractor: defaultBadgeExtractor,
+  keyExtractor: defaultBadgeExtractor,
 })
 
 export let BadgeInput = ({
@@ -50,12 +49,11 @@ export let BadgeInput = ({
   onChangeText = () => {},
   onBadgePress = () => {},
   inputSuffix = undefined,
-  keyExtractor,
   badgeStyle = undefined,
   inputProps = {},
   style = undefined,
-  badgeTextExtractor = (badge: string) => badge,
-  badgeKeyExtractor = badgeTextExtractor,
+  textExtractor = (badge: string) => badge,
+  keyExtractor = textExtractor,
 }: Props) => {
   const [isFocused, focusProps] = useInputFocus(false)
   const inputRef = useRef<TextInput>(null)
@@ -89,8 +87,8 @@ export let BadgeInput = ({
       value={{
         onBadgePress,
         badgeStyle,
-        badgeTextExtractor,
-        badgeKeyExtractor,
+        textExtractor,
+        keyExtractor,
       }}
     >
       <TouchableWithoutFeedback onPress={onPress} style={style}>
