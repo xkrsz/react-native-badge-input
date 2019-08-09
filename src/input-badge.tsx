@@ -23,7 +23,7 @@ export default function InputBadge({ badge }: Props) {
   )
 }
 
-const styles = StyleSheet.create({
+let styles = StyleSheet.create({
   container: {
     marginVertical: 3,
     marginLeft: 5,

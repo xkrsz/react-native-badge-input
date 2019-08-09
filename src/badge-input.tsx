@@ -18,6 +18,7 @@ interface Props extends TextInputProps {
   value: string
   onChangeText: (_: string) => void
   onBadgePress: () => void
+  placeholder?: string
   inputSuffix?: () => ReactElement
   badgeStyle?: TouchableOpacityProps['style']
   inputProps?: TextInputProps
@@ -46,6 +47,7 @@ export let BadgeInput = ({
   value = '',
   onChangeText = () => {},
   onBadgePress = () => {},
+  placeholder = undefined,
   inputSuffix = undefined,
   badgeStyle = undefined,
   inputProps = {},
@@ -53,11 +55,11 @@ export let BadgeInput = ({
   textExtractor = (badge: string) => badge,
   keyExtractor = textExtractor,
 }: Props) => {
-  const [isFocused, focusProps] = useInputFocus(false)
-  const inputRef = useRef<TextInput>(null)
+  let [isFocused, focusProps] = useInputFocus(false)
+  let inputRef = useRef<TextInput>(null)
 
   // Handle press of an entire component and focus on the input
-  const onPress = useCallback(() => {
+  let onPress = useCallback(() => {
     if (!inputRef.current) return
 
     inputRef.current.focus()
@@ -65,14 +67,15 @@ export let BadgeInput = ({
 
   // Show Text with the placeholder instead of using TextInputs placeholder,
   // as it would be shown when internal TextInput is empty.
-  const showPlaceholder = value.length + badges.length === 0 && !isFocused
+  let isInputEmpty = value.length + badges.length === 0
+  let shouldRenderPlaceholder = placeholder && isInputEmpty && !isFocused
 
-  const renderPlaceholder = useCallback(
-    () => <Text style={styles.placeholder}>Search</Text>,
+  let renderPlaceholder = useCallback(
+    () => <Text style={styles.placeholder}>{placeholder}</Text>,
     []
   )
 
-  const renderBadges = useCallback(
+  let renderBadges = useCallback(
     () =>
       badges.map(badge => (
         <InputBadge key={keyExtractor(badge)} badge={badge} />
@@ -92,7 +95,7 @@ export let BadgeInput = ({
       <TouchableWithoutFeedback onPress={onPress} style={style}>
         <View style={styles.container}>
           <View style={styles.contentContainer}>
-            {showPlaceholder && renderPlaceholder()}
+            {shouldRenderPlaceholder && renderPlaceholder()}
             {renderBadges()}
             <TextInput
               ref={inputRef}
@@ -114,7 +117,7 @@ export let BadgeInput = ({
   )
 }
 
-const styles = StyleSheet.create({
+let styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',

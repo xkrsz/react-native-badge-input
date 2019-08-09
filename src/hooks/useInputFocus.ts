@@ -1,10 +1,10 @@
 import { useState } from 'react'
 
 export let useInputFocus = (initialState: boolean) => {
-  const [isFocused, setIsFocused] = useState(initialState)
+  let [isFocused, setIsFocused] = useState(initialState)
 
-  const onFocus = () => setIsFocused(true)
-  const onBlur = () => setIsFocused(false)
+  let onFocus = () => setIsFocused(true)
+  let onBlur = () => setIsFocused(false)
 
   return [
     isFocused,
