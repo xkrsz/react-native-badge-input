@@ -1,5 +1,3 @@
-// @flow
-// $FlowFixMe
 import React, { useRef, useCallback, createContext, ReactElement } from 'react'
 import {
   View,

@@ -1,5 +1,3 @@
-// @flow
-// $FlowFixMe
 import React, { useContext, useCallback } from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { BadgeInputContext } from './badge-input'
