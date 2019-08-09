@@ -54,6 +54,7 @@ export let BadgeInput = ({
   style = undefined,
   textExtractor = (badge: string) => badge,
   keyExtractor = textExtractor,
+  ...props
 }: Props) => {
   let [isFocused, focusProps] = useInputFocus(false)
   let inputRef = useRef<TextInput>(null)
@@ -105,6 +106,7 @@ export let BadgeInput = ({
               autoCapitalize={'none'}
               autoCompleteType={'off'}
               {...focusProps}
+              {...props}
               {...inputProps}
             />
           </View>
