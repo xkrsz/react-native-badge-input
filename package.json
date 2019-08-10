@@ -1,6 +1,6 @@
 {
   "name": "react-native-badge-input",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Modular badge input for React Native",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
